@@ -30,7 +30,7 @@ const FormInput = styled.input`
   background-color: ghostwhite;
 `;
 
- const FormSubmitBtn = styled.button`
+const FormSubmitBtn = styled.button`
   display: inline-block;
   width: 160px;
   height: 50px;
@@ -54,4 +54,10 @@ const FormInput = styled.input`
   }
 `;
 
-export { FormWrapper, ContactSubmitForm, FormInputLabel, FormInput, FormSubmitBtn };
+export {
+  FormWrapper,
+  ContactSubmitForm,
+  FormInputLabel,
+  FormInput,
+  FormSubmitBtn,
+};

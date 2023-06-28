@@ -26,7 +26,7 @@ const PhonebookList = styled.ul`
 `;
 
 const ListElement = styled.li`
-  :first-child {
+  :first-of-type {
     padding-top: 20px;
   }
 

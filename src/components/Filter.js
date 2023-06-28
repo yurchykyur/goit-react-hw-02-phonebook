@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 
 import { FilterWrapper, FilterInputLabel, FilterInput } from './Filter.styled';
 
+/**
+ * the function responsible for creating the markup of the component
+ * @param {Props} props
+ * @returns the markup of the component
+ */
 export default function Filter({ value, onChangeFilter }) {
   const inputId = nanoid();
   return (

@@ -18,15 +18,26 @@ const INITIAL_STATE_FORM = {
 export default class ContactForm extends Component {
   state = { ...INITIAL_STATE_FORM };
 
+  /**
+   * function that updates the state of the class with the data entered in the field
+   * @param {Event} e
+   */
   handleInputChange = e => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
   };
 
+  /**
+   * a function that clears the form by writing the initial data from the state class to it
+   */
   reset = () => {
     this.setState({ ...INITIAL_STATE_FORM });
   };
 
+  /**
+   * function that raises the state of the class to the level of the parent
+   * @param {Event} e
+   */
   handleFormSubmit = e => {
     e.preventDefault();
 
@@ -47,6 +58,7 @@ export default class ContactForm extends Component {
             <FormInput
               type="text"
               name="name"
+              placeholder="John Wick"
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
@@ -61,6 +73,7 @@ export default class ContactForm extends Component {
             <FormInput
               type="tel"
               name="number"
+              placeholder="+380501234567"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required

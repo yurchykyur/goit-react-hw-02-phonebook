@@ -5,21 +5,23 @@ import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
 
+import initialBaseContacts from './Data/initialBaseContacts.json';
+
 import { AppContainer, MainTitle, SecondTitle } from './App.styled';
 
 const INITIAL_STATE_BASE = {
-  contacts: [
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ],
+  contacts: [...initialBaseContacts],
   filter: '',
 };
 
 export class App extends Component {
   state = { ...INITIAL_STATE_BASE };
 
+  /**
+   * function that creates a new contact
+   * @param {Object} data
+   * @returns used to stop the execution of a function
+   */
   addContact = data => {
     if (this.state.contacts.find(contact => contact.name === data.name)) {
       alert(`${data.name} is already in contacts`);
@@ -33,6 +35,10 @@ export class App extends Component {
     }));
   };
 
+  /**
+   * a function that deletes a contact
+   * @param {String} id
+   */
   deleteContact = id => {
     const afterDeleteArr = this.state.contacts.filter(
       contact => contact.id !== id
@@ -40,10 +46,18 @@ export class App extends Component {
     this.setState({ contacts: [...afterDeleteArr] });
   };
 
+  /**
+   * function that updates the state of the class for data filtering
+   * @param {Event} e
+   */
   onChangeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
 
+  /**
+   * function that creates a filtered array of contacts
+   * @returns filtered contact array
+   */
   getFilteredContact = () => {
     const { filter, contacts } = this.state;
     const normalizedFilterQuery = filter.toLowerCase();

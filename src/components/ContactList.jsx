@@ -12,6 +12,11 @@ import {
   DeleteBtn,
 } from './ContactList.styled';
 
+/**
+ * the function responsible for creating the markup of the component
+ * @param {Props} props
+ * @returns the markup of the component
+ */
 export default function ContactList({
   contactList,
   deleteContact,
@@ -19,7 +24,7 @@ export default function ContactList({
   contactsAmount,
 }) {
   return isContact ? (
-    <div>
+    <>
       <TotalContactsText>
         Contacts amount: <TotalContactsNum>{contactsAmount}</TotalContactsNum>
       </TotalContactsText>
@@ -36,7 +41,7 @@ export default function ContactList({
           );
         })}
       </PhonebookList>
-    </div>
+    </>
   ) : (
     <NotificationText>There are no contacts in your phonebook</NotificationText>
   );
