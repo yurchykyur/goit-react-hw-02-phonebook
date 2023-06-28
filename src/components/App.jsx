@@ -5,6 +5,8 @@ import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
 
+import { AppContainer, MainTitle, SecondTitle } from './App.styled';
+
 const INITIAL_STATE_BASE = {
   contacts: [
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -19,11 +21,23 @@ export class App extends Component {
   state = { ...INITIAL_STATE_BASE };
 
   addContact = data => {
+    if (this.state.contacts.find(contact => contact.name === data.name)) {
+      alert(`${data.name} is already in contacts`);
+      return;
+    }
+
     const contact = { ...data, id: nanoid() };
 
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
+  };
+
+  deleteContact = id => {
+    const afterDeleteArr = this.state.contacts.filter(
+      contact => contact.id !== id
+    );
+    this.setState({ contacts: [...afterDeleteArr] });
   };
 
   onChangeFilter = e => {
@@ -42,15 +56,21 @@ export class App extends Component {
   render() {
     const { filter } = this.state;
     const filteredContacts = this.getFilteredContact();
+    const isContact = !this.state.contacts.length ? false : true;
 
     return (
-      <div>
-        <h1>Phonebook</h1>
+      <AppContainer>
+        <MainTitle>Phonebook</MainTitle>
         <ContactForm formSubmitHandler={this.addContact} />
-        <h2>Contacts</h2>
+        <SecondTitle>Contacts</SecondTitle>
         <Filter onChangeFilter={this.onChangeFilter} value={filter} />
-        <ContactList contactList={filteredContacts} />
-      </div>
+        <ContactList
+          contactList={filteredContacts}
+          deleteContact={this.deleteContact}
+          isContact={isContact}
+          contactsAmount={this.state.contacts.length}
+        />
+      </AppContainer>
     );
   }
 }
