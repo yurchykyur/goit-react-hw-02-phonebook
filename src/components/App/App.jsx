@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 
-import ContactForm from './ContactForm';
-import ContactList from './ContactList';
-import Filter from './Filter';
+import ContactForm from 'components/ContactForm';
+import ContactList from 'components/ContactList';
+import Filter from 'components/Filter';
 
-import initialBaseContacts from './Data/initialBaseContacts.json';
+import initialBaseContacts from 'Data/initialBaseContacts';
 
 import { AppContainer, MainTitle, SecondTitle } from './App.styled';
 
@@ -14,14 +14,9 @@ const INITIAL_STATE_BASE = {
   filter: '',
 };
 
-export class App extends Component {
+export default class App extends Component {
   state = { ...INITIAL_STATE_BASE };
 
-  /**
-   * function that creates a new contact
-   * @param {Object} data
-   * @returns used to stop the execution of a function
-   */
   addContact = data => {
     if (this.state.contacts.find(contact => contact.name === data.name)) {
       alert(`${data.name} is already in contacts`);
@@ -35,10 +30,6 @@ export class App extends Component {
     }));
   };
 
-  /**
-   * a function that deletes a contact
-   * @param {String} id
-   */
   deleteContact = id => {
     const afterDeleteArr = this.state.contacts.filter(
       contact => contact.id !== id
@@ -46,18 +37,10 @@ export class App extends Component {
     this.setState({ contacts: [...afterDeleteArr] });
   };
 
-  /**
-   * function that updates the state of the class for data filtering
-   * @param {Event} e
-   */
   onChangeFilter = e => {
     this.setState({ filter: e.currentTarget.value });
   };
 
-  /**
-   * function that creates a filtered array of contacts
-   * @returns filtered contact array
-   */
   getFilteredContact = () => {
     const { filter, contacts } = this.state;
     const normalizedFilterQuery = filter.toLowerCase();
