@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { TotalContactsText, TotalContactsNum } from './ContactAmount.styled';
 
 export default function ContactAmount({ contactsAmount }) {
@@ -7,3 +9,5 @@ export default function ContactAmount({ contactsAmount }) {
     </TotalContactsText>
   );
 }
+
+ContactAmount.propTypes = { contactsAmount: PropTypes.number.isRequired };
