@@ -1,14 +1,5 @@
 import styled from '@emotion/styled';
 
-const TotalContactsText = styled.p`
-  font-size: 18px;
-`;
-
-const TotalContactsNum = styled.span`
-  margin-left: 4px;
-  color: blue;
-`;
-
 const PhonebookList = styled.ul`
   display: flex;
   flex-direction: column;
@@ -37,10 +28,6 @@ const ListElement = styled.li`
   :not(:last-child) {
     margin-bottom: 10px;
   }
-`;
-
-const NotificationText = styled.p`
-  font-size: 18px;
 `;
 
 const ContactItemWrapper = styled.div`
@@ -91,11 +78,8 @@ const DeleteBtn = styled.button`
 `;
 
 export {
-  NotificationText,
   ListElement,
   PhonebookList,
-  TotalContactsNum,
-  TotalContactsText,
   ContactItemWrapper,
   ContactItemName,
   ContactItemNum,

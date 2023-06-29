@@ -4,6 +4,8 @@ import { nanoid } from 'nanoid';
 import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
+import ContactAmount from 'components/ContactAmount';
+import NotificationText from 'components/NotificationText';
 
 import initialBaseContacts from 'Data/initialBaseContacts';
 
@@ -31,10 +33,9 @@ export default class App extends Component {
   };
 
   deleteContact = id => {
-    const afterDeleteArr = this.state.contacts.filter(
-      contact => contact.id !== id
-    );
-    this.setState({ contacts: [...afterDeleteArr] });
+    this.setState(({ contacts }) => ({
+      contacts: contacts.filter(contact => contact.id !== id),
+    }));
   };
 
   onChangeFilter = e => {
@@ -61,12 +62,20 @@ export default class App extends Component {
         <ContactForm formSubmitHandler={this.addContact} />
         <SecondTitle>Contacts</SecondTitle>
         <Filter onChangeFilter={this.onChangeFilter} value={filter} />
+        <ContactAmount
+          contactsAmount={this.state.contacts.length}
+        ></ContactAmount>
+        isContact ? (
         <ContactList
           contactList={filteredContacts}
           deleteContact={this.deleteContact}
           isContact={isContact}
-          contactsAmount={this.state.contacts.length}
         />
+        ) : (
+        <NotificationText
+          message={'There are no contacts in your phonebook'}
+        ></NotificationText>
+        )
       </AppContainer>
     );
   }

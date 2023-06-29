@@ -1,28 +1,17 @@
 import PropTypes from 'prop-types';
 
 import {
-  NotificationText,
   ListElement,
   PhonebookList,
-  TotalContactsNum,
-  TotalContactsText,
   ContactItemWrapper,
   ContactItemName,
   ContactItemNum,
   DeleteBtn,
 } from './ContactList.styled';
 
-export default function ContactList({
-  contactList,
-  deleteContact,
-  isContact,
-  contactsAmount,
-}) {
-  return isContact ? (
+export default function ContactList({ contactList, deleteContact }) {
+  return (
     <>
-      <TotalContactsText>
-        Contacts amount: <TotalContactsNum>{contactsAmount}</TotalContactsNum>
-      </TotalContactsText>
       <PhonebookList>
         {contactList.map(({ id, number, name }) => {
           return (
@@ -37,14 +26,10 @@ export default function ContactList({
         })}
       </PhonebookList>
     </>
-  ) : (
-    <NotificationText>There are no contacts in your phonebook</NotificationText>
   );
 }
 
 ContactList.propTypes = {
   contactList: PropTypes.array.isRequired,
   deleteContact: PropTypes.func.isRequired,
-  isContact: PropTypes.bool.isRequired,
-  contactsAmount: PropTypes.number.isRequired,
 };
