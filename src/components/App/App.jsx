@@ -5,7 +5,7 @@ import ContactForm from 'components/ContactForm';
 import ContactList from 'components/ContactList';
 import Filter from 'components/Filter';
 import ContactAmount from 'components/ContactAmount';
-import NotificationText from 'components/NotificationText';
+import Notification from 'components/Notification';
 
 import initialBaseContacts from 'Data/initialBaseContacts';
 
@@ -65,17 +65,16 @@ export default class App extends Component {
         <ContactAmount
           contactsAmount={this.state.contacts.length}
         ></ContactAmount>
-        isContact ? (
-        <ContactList
-          contactList={filteredContacts}
-          deleteContact={this.deleteContact}
-          isContact={isContact}
-        />
+        {isContact ? (
+          <ContactList
+            contactList={filteredContacts}
+            deleteContact={this.deleteContact}
+          />
         ) : (
-        <NotificationText
-          message={'There are no contacts in your phonebook'}
-        ></NotificationText>
-        )
+          <Notification
+            message={'There are no contacts in your phonebook'}
+          ></Notification>
+        )}
       </AppContainer>
     );
   }
